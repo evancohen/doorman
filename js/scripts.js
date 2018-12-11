@@ -1,12 +1,7 @@
 
 // On Load...
 $(function () {
-
-    // Because it's not supported
-    document.getElementById('expiry').valueAsDate = new Date();
-
     $codes = $('#codes')
-    $("#expiry").val(new Date().toISOString().substring(0, 16))
     DB.getCodes().done(function (response) {
         console.log(response);
         let options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
