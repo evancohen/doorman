@@ -1,7 +1,7 @@
-let $AppendKey = key => {
+let $PrependKey = key => {
     let options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
     let valid = (Date.now() <= Date.parse(key.expiry)) ? '' : 'table-danger'
-    $codes.append(`<tr id="${key['_id']}" class="${valid}"><td>${key.name}</td>  
+    $codes.prepend(`<tr id="${key['_id']}" class="${valid}"><td>${key.name}</td>  
         <td>${new Date(key.expiry).toLocaleDateString('en-US', options)}</td>
         <td>[${key.pin}]</td>
         <td><button class="btn btn-sm btn-danger" onclick="deleteCode('${key['_id']}')">🗑️</button></dt></tr>`)
@@ -12,7 +12,7 @@ $(function () {
     $codes = $('#codes')
     DB.getCodes().done(function (response) {
         console.log(response);
-        response.forEach($AppendKey);
+        response.forEach($PrependKey);
     });
 });
 
