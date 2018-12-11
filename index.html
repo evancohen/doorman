@@ -9,6 +9,7 @@
     <title></title>
 
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="icon" href="images/favicon.png">
 </head>
 
@@ -22,7 +23,7 @@
         <input type="number" name="years" id="years" placeholder="years">
         <button type="button" onclick="generateCode()">Generate</button>
     </form>
-    <div id="generated-code"></div>
+    <h2 id="generated-code"></h2>
     <table id="codes" style="width:100%">
         <tr>
             <th>Name</th>
@@ -32,7 +33,8 @@
         </tr>
     </table>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="js/db.js"></script>
     <script src="js/scripts.js"></script>
 </body>
