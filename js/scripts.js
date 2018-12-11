@@ -39,7 +39,7 @@ let generateCode = () => {
     $("#generate-button").prop("disabled", true);
     DB.generateCode($("#name").val(), computedDate.toISOString()).done(function (result) {
         // Create SMS link and append to page
-        $AppendKey(result)
+        $PrependKey(result)
         let smsBody = `Your access code is '${result.pin}'.`
         $a = $("<a>").attr("href", `sms:?body=${encodeURIComponent(smsBody)}`)
         $a.attr("class", "btn btn-sm btn-outline-success col-12")
