@@ -6,8 +6,12 @@ const HEADERS = {
     "cache-control": "no-cache"
 }
 
+let randomPin = function(){
+    return Math.floor(Math.random() * 9000) + 1000;
+}
+
 let DB = {
-    getCodes: function() {
+    getCodes: function () {
         return $.ajax({
             "async": true,
             "crossDomain": true,
@@ -16,21 +20,48 @@ let DB = {
             "headers": HEADERS
         })
     },
-    getCode: function(pin) {
+    getCode: function (pin) {
         return $.ajax({
-            "async": true,
+            "async": false,
             "crossDomain": true,
-            "url": URL + `?q={"pin":${parseInt(pin)}`,
+            "url": URL + '?q={"pin":' + parseInt(pin) + "}",
             "method": "GET",
             "headers": HEADERS
         })
     },
-    checkCode: function(pin) {
-        
+    codeExists: function (pin) {
+        let exists = "ahhh";
+        DB.getCode(pin).done(function (result) {
+            exists = !!+result.length
+        })
+        return exists
     },
-    generateCode: function() {
-        let code = Math.floor(Math.random() * 9000) + 1000;
-        // Ensure the code is unique
-        DB.getCode(pin)
+    addCode: function(name, expiry, pin){
+        return $.ajax({
+            "async": true,
+            "crossDomain": true,
+            "url": URL,
+            "method": "POST",
+            "headers": HEADERS,
+            "data" : JSON.stringify({
+                "name"    : name,
+                "shared"  : false,
+                "pin"     : pin,
+                "expiry" : expiry
+            })
+        }) 
+    },
+    generateCode: function (name, expiry) {
+        // Generate a unique random number
+        let pin = randomPin()
+        console.log(pin)
+        while (DB.codeExists(pin)) {
+            pin = randomPin()
+        }
+
+        // Create a new record
+        DB.addCode(name, expiry, pin).done(function(result){
+            console.log(result)
+        })
     }
 }
