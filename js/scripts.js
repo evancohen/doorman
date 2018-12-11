@@ -1,6 +1,6 @@
 let $AppendKey = key => {
     let options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-    let valid = (Date.now() <= Date.parse(key.expiry)) ? 'table-active' : 'table-danger'
+    let valid = (Date.now() <= Date.parse(key.expiry)) ? '' : 'table-danger'
     $codes.append(`<tr id="${key['_id']}" class="${valid}"><td>${key.name}</td>  
         <td>${new Date(key.expiry).toLocaleDateString('en-US', options)}</td>
         <td>[${key.pin}]</td>
