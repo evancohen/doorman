@@ -39,11 +39,16 @@ let generateCode = () => {
     let computedDate = dateOffset($("#hours").val() || 0, $("#days").val() || 0,
         $("#months").val() || 0, $("#years").val() || 0)
 
+    // Disable button
+    $("#generate-button").prop("disabled", true);
     DB.generateCode($("#name").val(), computedDate.toISOString()).done(function (result) {
+        // Create SMS link and append to page
         $AppendKey(result)
         $a = $("<a>").attr("href", `sms:?body=${result.pin}`)
         $a.attr("class", "btn btn-sm btn-outline-success col-12")
         $a.text("💬 Send as SMS: " + result.pin)
         $("#generated-code").html($a)
+        // Re-enable button
+        $("#generate-button").prop("disabled", false);
     })
 }
