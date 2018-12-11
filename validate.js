@@ -38,7 +38,7 @@ exports.handler = function (context, event, callback) {
                 if(Date.now() <= Date.parse(key.expiry)){
                     // #2 Pin is valid
                     console.log("Valid PIN");
-                    twiml.redirect('/welcome?callerName='+key.name);
+                    twiml.redirect('/welcome?callerName='+encodeURIComponent(key.name));
                 } else {
                     // #3 Pin is Expired
                     console.log("Expired PIN");

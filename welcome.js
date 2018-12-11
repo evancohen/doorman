@@ -1,12 +1,11 @@
 exports.handler = function(context, event, callback) {
     let twiml = new Twilio.twiml.VoiceResponse();
     let notifyPhoneNumber = context.KARTIK_PHONE_NUMBER;
-    let callerName = event.callerName || null;
-    let notification = 'You have a guest';
+    let callerName = decodeURIComponent(event.callerName) || null;
+    let notification = 'A guest has arrived';
 
     if (callerName) {
-        twiml.say(callerName);
-        notification = notification + ' named ' + callerName;
+        notification = callerName + " has arrived";
     }
     twiml.say('Welcome ' + callerName + '. Please proceed to apartment 903.');
 
