@@ -26,48 +26,7 @@ exports.handler = function (context, event, callback) {
     }
 
     function validatePin(pin) {
-        var options = {
-            method: 'GET',
-            url: restdbURL,
-            headers: {
-                'cache-control': 'no-cache',
-                'x-apikey': restdbKey
-            },
-            from: {
-                'pin': parseInt(pin)
-            }
-        };
-        
-        console.log("Validating pin...")
-
-        request(options, function (error, response, body) {
-            console.log("Request Results",error, body);
-            if (error) throw new Error(error);
-
-            /**
-             * There are 3 main cases to handle
-             * 1) Invalid Pin (Missing)
-             * 2) Valid Pin
-             * 3) Expired Pin
-             */
-            if (body.length === 0) {
-                // #1 This PIN does not exist
-                twiml.say("Sorry, that is an invalid PIN.").pause();
-                tries++;
-                gatherPin();
-            } else {
-                let key = body[0];
-                if(Date.now() <= Date.parse(key.expriy)){
-                    // #2 Pin is valid
-                    twiml.redirect('/welcome?callerName=' + key.name);
-                } else {
-                    // #3 Pin is Expired
-                    twiml.say("Sorry, that PIN has expired. Calling Kartik.");
-                    twiml.redirect('/call');
-                }
-                
-            }
-        });
+        twiml.redirect('/validate?pin='+pin)
     }
 
     console.log("Event:", event);

@@ -12,8 +12,12 @@ exports.handler = function(context, event, callback) {
 
     // Should play the 9 key to let people in.
     // Maybe replace with digits and see if that works.
-    twiml.play('/assets/9.mp3');
-    twiml.play(null, {digits: 9});
+    //twiml.play('/assets/9.mp3');
+    twiml.play({digits: '9'})
+    // twiml.pause({length:1})
+    twiml.play({digits: '6'})
+    // twiml.pause({length:1})
+    // twiml.play({digits: '9'})
 
     // Notify the relevant parties
     twiml.sms(notification, {to: notifyPhoneNumber});
