@@ -21,8 +21,9 @@ $(function () {
 });
 
 let deleteCode = (id) => {
+    $("#" + id).remove()
     DB.deleteCodeByID(id).done(function (results) {
-        $("#" + id).remove()
+        console.log('Removed', results)
     })
 }
 
