@@ -4,7 +4,7 @@ let $AppendKey = key => {
     $codes.append(`<tr id="${key['_id']}" class="${valid}"><td>${key.name}</td>  
         <td>${new Date(key.expiry).toLocaleDateString('en-US', options)}</td>
         <td>[${key.pin}]</td>
-        <td><a href="#" onclick="deleteCode('${key['_id']}')">🗑️</a></dt></tr>`)
+        <td><a href="" onclick="deleteCode('${key['_id']}')">🗑️</a></dt></tr>`)
 }
 
 // On Load...
