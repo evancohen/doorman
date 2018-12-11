@@ -5,6 +5,9 @@ exports.handler = function (context, event, callback) {
     let restdbURL = context.RESTDB_URL;
     let restdbKey = context.RESTDB_KEY;
     let pin = parseInt(event.pin) || 0;
+    let tries = parseInt(event.tries) || 0;
+    console.log("Tries", tries)
+
 
     console.log("Request URL:", `${restdbURL}?q={"pin":${parseInt(pin)}}`);
 
@@ -32,7 +35,7 @@ exports.handler = function (context, event, callback) {
                 // #1 This PIN does not exist
                 console.log("Invalid PIN");
                 twiml.say("Sorry, that is an invalid PIN.");
-                twiml.redirect('/pin');
+                twiml.redirect(`/pin?tries=${tries+1}`);
             } else {
                 let key = jsonbody.data[0];
                 if(Date.now() <= Date.parse(key.expiry)){

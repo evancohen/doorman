@@ -5,7 +5,7 @@ exports.handler = function (context, event, callback) {
     let restdbURL = context.RESTDB_URL;
     let restdbKey = context.RESTDB_KEY;
     let tries = parseInt(event.tries) || 0;
-    
+    console.log("Tries", tries)
 
     // Ask user for PIN
     function gatherPin() {
@@ -19,14 +19,14 @@ exports.handler = function (context, event, callback) {
             timeout: 15
         };
         twiml.gather(gatherConfigs)
-            .say('Please enter your PIN or 0, 0, 0, 0 to call Kartik');
+            .say('Please enter your PIN,' + ((!tries)? ' or 0 0 0 0 to call Kartik.' : '.'));
 
         // If the user doesn't enter input, loop
-        twiml.redirect('/pin');
+        twiml.redirect(`/pin?tries=${tries}`);
     }
 
     function validatePin(pin) {
-        twiml.redirect('/validate?pin='+pin)
+        twiml.redirect(`/validate?pin=${pin}&tries=${tries}`)
     }
 
     console.log("Event:", event);
