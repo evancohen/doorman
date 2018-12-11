@@ -32,11 +32,11 @@ let dateOffset = (hours, days, months, years) => {
 }
 
 let generateCode = () => {
+    $("#generate-button").prop("disabled", true);
     let computedDate = dateOffset($("#hours").val() || 0, $("#days").val() || 0,
         $("#months").val() || 0, $("#years").val() || 0)
 
     // Disable button
-    $("#generate-button").prop("disabled", true);
     DB.generateCode($("#name").val(), computedDate.toISOString()).done(function (result) {
         // Create SMS link and append to page
         $PrependKey(result)
@@ -45,7 +45,8 @@ let generateCode = () => {
         $a.attr("class", "btn btn-sm btn-outline-success col-12")
         $a.text("💬 Send as SMS: " + result.pin)
         $("#generated-code").html($a)
-        // Re-enable button
+        // Re-enable button and clear form
+        $('#generate').trigger("reset");
         $("#generate-button").prop("disabled", false);
     })
 }
