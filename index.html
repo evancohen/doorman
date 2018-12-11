@@ -15,21 +15,23 @@
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="">Doorman</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav mr-auto">
+        <a class="navbar-brand" href="/">Doorman</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">⚙️ Settings</a>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#settings-modal"> ⚙️ Settings </button>
                 </li>
-              </ul>
-              <span class="navbar-text">
+            </ul>
+            <span class="navbar-text">
                 Brought to you by <a href="https://evancohen.io">Evan</a>!
-              </span>
-            </div>
+            </span>
+        </div>
     </nav>
+    <!-- Generate New Code -->
     <div class="container">
         <form id="generate">
             <div class="form-group row">
@@ -59,6 +61,8 @@
     <div class="container">
         <h2 id="generated-code"></h2>
     </div>
+
+    <!-- Existing Codes-->
     <div class="container">
         <table id="codes" class="table table-striped">
             <thead>
@@ -70,6 +74,35 @@
                 </tr>
             </thead>
         </table>
+    </div>
+
+    <!-- Modal -->
+    <div id="settings-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="settings">
+                        <div class="form-group row">
+                            <label for="url" class="col-12 col-form-label">Database URL</label>
+                            <input type="text" class="col-10 offset-1" name="url" id="url" placeholder="hours">
+                        </div>
+                        <div class="form-group row">
+                            <label for="key" class="col-12 col-form-label">CORS Key</label>
+                            <input type="text" class="col-10 offset-1" name="key" id="key" placeholder="key">
+                        </div>                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveSettings()">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

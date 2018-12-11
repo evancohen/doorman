@@ -14,10 +14,6 @@ $(function () {
         console.log(response);
         response.forEach($AppendKey);
     });
-
-    // DB.addCode("test", new Date().toISOString(), 1234).done(function(result){
-    //     console.log(result)
-    // })
 });
 
 let deleteCode = (id) => {
@@ -52,4 +48,10 @@ let generateCode = () => {
         // Re-enable button
         $("#generate-button").prop("disabled", false);
     })
+}
+
+let saveSettings = () => { 
+    localStorage.setItem("API_KEY",$("#key").val());
+    localStorage.setItem("URL",$("#url").val());
+    location.reload();
 }

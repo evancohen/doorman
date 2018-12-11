@@ -1,12 +1,25 @@
-const API_KEY = "5c0f48fb5c41c52f7e131f3a";
-const URL = "https://doorman-1f48.restdb.io/rest/keys"
+/**
+ * https://doorman-1f48.restdb.io/rest/keys
+ * 5c0f48fb5c41c52f7e131f3a
+ */
+
+const API_KEY = localStorage.getItem("API_KEY");
+const URL = localStorage.getItem("URL")
+
+if (!API_KEY || !URL) {
+    $p = $("<p>").attr("class", "alert alert-danger col-12")
+    $p.attr("role", "alert")
+    $p.text("Please configure settings!")
+    $("#generated-code").html($p)
+}
+
 const HEADERS = {
     "content-type": "application/json",
     "x-apikey": API_KEY,
     "cache-control": "no-cache"
 }
 
-let randomPin = function(){
+let randomPin = function () {
     return Math.floor(Math.random() * 9000) + 1000;
 }
 
@@ -36,20 +49,20 @@ let DB = {
         })
         return exists
     },
-    addCode: function(name, expiry, pin){
+    addCode: function (name, expiry, pin) {
         return $.ajax({
             "async": true,
             "crossDomain": true,
             "url": URL,
             "method": "POST",
             "headers": HEADERS,
-            "data" : JSON.stringify({
-                "name"    : name,
-                "shared"  : false,
-                "pin"     : pin,
-                "expiry" : expiry
+            "data": JSON.stringify({
+                "name": name,
+                "shared": false,
+                "pin": pin,
+                "expiry": expiry
             })
-        }) 
+        })
     },
     generateCode: function (name, expiry) {
         // Generate a unique random number
