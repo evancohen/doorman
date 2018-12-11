@@ -4,34 +4,55 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title></title>
 
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="images/favicon.png">
 </head>
 
 <body>
-    <form id="generate">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" />
-        <input type="number" name="hours" id="hours" placeholder="hours">
-        <input type="number" name="days" id="days" placeholder="days">
-        <input type="number" name="months" id="months" placeholder="months">
-        <input type="number" name="years" id="years" placeholder="years">
-        <button type="button" onclick="generateCode()">Generate</button>
-    </form>
-    <h2 id="generated-code"></h2>
-    <table id="codes" style="width:100%">
-        <tr>
-            <th>Name</th>
-            <th>Expiry</th>
-            <th>Code</th>
-            <th>Delete</th>
-        </tr>
-    </table>
+    <div class="container">
+        <form id="generate">
+            <div class="form-group row">
+                <label for="name" class="col-2 col-form-label form-control-lg">Name</label>
+                <input id="name" class="col-9 form-control-lg" name="name" type="text" />
+                <small id="emailHelp" class="form-text text-muted col-9 offset-2">User will hear this name when they enter.</small>
+            </div>
+            <div class="form-group row">
+                <label for="hours" class="col-2 col-form-label">Hours</label>
+                <input type="number" class="col-9" name="hours" id="hours" placeholder="hours">
+            </div>
+            <div class="form-group row">
+                <label for="days" class="col-2 col-form-label">Days</label>
+                <input type="number" class="col-9" name="days" id="days" placeholder="days">
+            </div>
+            <div class="form-group row">
+                <label for="months" class="col-2 col-form-label">Months</label>
+                <input type="number" class="col-9" name="months" id="months" placeholder="months">
+            </div>
+            <div class="form-group row">
+                <label for="years" class="col-2 col-form-label">Years</label>
+                <input type="number" class="col-9" name="years" id="years" placeholder="years">
+            </div>
+            <button type="button" class="btn btn-lg btn-primary mb-2 col-8 offset-2" onclick="generateCode()">Generate</button>
+        </form>
+    </div>
+    <div class="container">
+        <h2 id="generated-code"></h2>
+    </div>
+    <div class="container">
+        <table id="codes" class="table">
+            <tr>
+                <th>Name</th>
+                <th>Expiry</th>
+                <th>Code</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
