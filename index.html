@@ -13,7 +13,23 @@
 </head>
 
 <body>
-    <ul id="codes"></ul>
+    <form id="generate">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" />
+        <input type="number" name="hours" id="hours" placeholder="hours">
+        <input type="number" name="days" id="days" placeholder="days">
+        <input type="number" name="months" id="months" placeholder="months">
+        <input type="number" name="years" id="years" placeholder="years">
+    </form>
+    <div id="generated-code"></div>
+    <table id="codes" style="width:100%">
+        <tr>
+            <th>Name</th>
+            <th>Expiry</th>
+            <th>Code</th>
+            <th>Delete</th>
+        </tr>
+    </table>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/db.js"></script>
