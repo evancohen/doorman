@@ -1,8 +1,3 @@
-/**
- * https://doorman-1f48.restdb.io/rest/keys
- * 5c0f48fb5c41c52f7e131f3a
- */
-
 const API_KEY = localStorage.getItem("API_KEY");
 const URL = localStorage.getItem("URL")
 
