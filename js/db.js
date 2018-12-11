@@ -25,7 +25,12 @@ let DB = {
             "headers": HEADERS
         })
     },
-    generateCode: function() {
+    checkCode: function(pin) {
         
+    },
+    generateCode: function() {
+        let code = Math.floor(Math.random() * 9000) + 1000;
+        // Ensure the code is unique
+        DB.getCode(pin)
     }
 }
