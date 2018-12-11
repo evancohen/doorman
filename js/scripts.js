@@ -1,10 +1,10 @@
 
 $(function () {
-    $codes = $('codes')
+    $codes = $('#codes')
     DB.getCodes().done(function (response) {
         console.log(response);
         response.forEach(key => {
-            $codes.append(`<li><strong>${key.name}</strong>[${key.pin}] Expires: ${key.expiry}</li>`)
+            $codes.append(`<li data-id="${key.id}"><strong>${key.name}</strong>[${key.pin}] Expires: ${key.expiry}</li>`)
         });
     });
 

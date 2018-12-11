@@ -63,5 +63,14 @@ let DB = {
         DB.addCode(name, expiry, pin).done(function(result){
             console.log(result)
         })
+    },
+    deleteCodeByID: function (id) {
+        return $.ajax({
+            "async": true,
+            "crossDomain": true,
+            "url": URL + "/" + id,
+            "method": "DELETE",
+            "headers": HEADERS
+        })
     }
 }
