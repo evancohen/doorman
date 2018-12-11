@@ -19,7 +19,7 @@ $(function () {
     // })
 });
 
-deleteCode = (id) => {
+let deleteCode = (id) => {
     DB.deleteCodeByID(id).done(function (results) {
         $("#" + id).remove()
     })
@@ -34,10 +34,11 @@ let dateOffset = (hours, days, months, years) =>{
     return date
 }
 
-generateCode = (date) => {
-    let date = new Date()
-    date.setHours(date.getHours()+hours_to_be_added); 
-    DB.addCode("test", new Date().toISOString(), 1234).done(function (result) {
+let generateCode = () => {
+    let computedDate = dateOffset($("#hours").val() || 0, $("#days").val() || 0,
+        $("#months").val() || 0, $("#years").val() || 0)
+
+    DB.generateCode($("#name").val(), computedDate.toISOString()).done(function (result) {
         console.log(result)
     })
 }

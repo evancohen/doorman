@@ -60,9 +60,7 @@ let DB = {
         }
 
         // Create a new record
-        DB.addCode(name, expiry, pin).done(function(result){
-            console.log(result)
-        })
+        return DB.addCode(name, expiry, pin)
     },
     deleteCodeByID: function (id) {
         return $.ajax({
