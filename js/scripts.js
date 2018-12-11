@@ -11,7 +11,6 @@ let $PrependKey = key => {
 $(function () {
     $codes = $('#codes')
     DB.getCodes().done(function (response) {
-        console.log(response);
         response.forEach($PrependKey);
     });
 });
@@ -41,7 +40,8 @@ let generateCode = () => {
     DB.generateCode($("#name").val(), computedDate.toISOString()).done(function (result) {
         // Create SMS link and append to page
         $AppendKey(result)
-        $a = $("<a>").attr("href", `sms:?body=${result.pin}`)
+        let smsBody = `Your access code is '${result.pin}'.`
+        $a = $("<a>").attr("href", `sms:?body=${encodeURIComponent(smsBody)}`)
         $a.attr("class", "btn btn-sm btn-outline-success col-12")
         $a.text("💬 Send as SMS: " + result.pin)
         $("#generated-code").html($a)

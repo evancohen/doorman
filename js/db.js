@@ -1,6 +1,7 @@
 const API_KEY = localStorage.getItem("API_KEY");
 const URL = localStorage.getItem("URL")
 
+// If settings haven't been configured promt user
 if (!API_KEY || !URL) {
     $p = $("<p>").attr("class", "alert alert-danger col-12")
     $p.attr("role", "alert")
