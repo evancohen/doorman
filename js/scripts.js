@@ -4,7 +4,7 @@ let $AppendKey = key => {
     $codes.append(`<tr id="${key['_id']}" class="${valid}"><td>${key.name}</td>  
         <td>${new Date(key.expiry).toLocaleDateString('en-US', options)}</td>
         <td>[${key.pin}]</td>
-        <td><a href="" onclick="deleteCode('${key['_id']}')">🗑️</a></dt></tr>`)
+        <td><button class="btn btn-sm btn-danger" onclick="deleteCode('${key['_id']}')">🗑️</button></dt></tr>`)
 }
 
 // On Load...
@@ -28,10 +28,10 @@ let deleteCode = (id) => {
 
 let dateOffset = (hours, days, months, years) => {
     let date = new Date()
-    date.setHours(date.getHours() + hours)
-    date.setDate(date.getDate() + days)
-    date.setMonth(date.getMonth() + months)
-    date.setFullYear(date.getFullYear() + years)
+    date.setHours(date.getHours() + parseInt(hours))
+    date.setDate(date.getDate() + parseInt(days))
+    date.setMonth(date.getMonth() + parseInt(months))
+    date.setFullYear(date.getFullYear() + parseInt(years))
     return date
 }
 
