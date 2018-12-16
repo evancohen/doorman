@@ -13,7 +13,7 @@ exports.handler = function (context, event, callback) {
      */
     function gatherPin() {
         if (tries > 2) {
-            twiml.say("Too many trys, calling Kartik");
+            twiml.say("Too many tries, calling Kartik");
             twiml.redirect('/call');
         }
 
@@ -37,7 +37,7 @@ exports.handler = function (context, event, callback) {
         // Make sure we dont get any leftover speech
         let pinIndex = speech.search(/\d{4}/i);
         // If there's a 4 digit pin in the utterance
-        if(pinIndex) {
+        if(pinIndex >= 0) {
             let pin = speech.substring(pinIndex, pinIndex + 4);
             twiml.redirect(`/validate?pin=${pin}&tries=${tries}`)
         } else {
@@ -62,6 +62,5 @@ exports.handler = function (context, event, callback) {
         gatherPin();
     }
 
-    console.log("about to end...")
     callback(null, twiml);
 };
